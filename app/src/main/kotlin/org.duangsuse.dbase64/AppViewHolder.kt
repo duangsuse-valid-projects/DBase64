@@ -11,6 +11,9 @@ import android.widget.FrameLayout.*
 import org.duangsuse.dbase64.R.id.*
 
 class AppViewHolder(val cont: FrameLayout, val text: EditText, val fab: FloatingActionButton, val app: App) {
+  var isEncode: Boolean = true
+  var coder: AbstractCoder
+
   fun handleMenu(id: Int) {
     val dispatch: Function0<Unit> = when (id) {
       s_encode -> ::code
@@ -28,16 +31,36 @@ class AppViewHolder(val cont: FrameLayout, val text: EditText, val fab: Floating
     dispatch()
   }
 
+  fun invert() {
+    toast(app.getString(R.string.status_changed))
+    isEncode = ! isEncode
+  }
+  fun doOperation() { if (isEncode) code() else decode() }
+
   fun handleFabClick(fab: FloatingActionButton) {
     assert (fab == this.fab)
+    doOperation()
   }
 
   fun handleFabLongClick(fab: FloatingActionButton) {
     assert (fab == this.fab)
+    invert()
   }
 
-  fun code() {}
-  fun decode() {}
+  fun code() {
+    codeUpdateView()
+  }
+  fun decode() {
+    decodeUpdateView()
+  }
+
+  fun codeUpdateView() {
+    text.hint = app.getString(R.string.hint_code)
+  }
+
+  fun decodeUpdateView() {
+    text.hint = app.getString(R.string.hint_decode)
+  }
 
   fun encodeFile() {}
   fun decodeFile() {}

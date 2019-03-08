@@ -13,6 +13,8 @@ class App: AppCompatActivity(), View.OnClickListener, View.OnLongClickListener {
   lateinit var av: AppViewHolder
 
   // TODO support for decode/encode intent from File Manager
+  // TODO color appbar
+  // TODO animation
 
   override fun onCreate(oldInstanceStat: Bundle?) {
     super.onCreate(oldInstanceStat)
@@ -39,7 +41,7 @@ class App: AppCompatActivity(), View.OnClickListener, View.OnLongClickListener {
   }
 
   override fun onLongClick(v: View): Boolean {
-    (v as? FloatingActionButton)?.let { av.handleFabClick(it) }
+    (v as? FloatingActionButton)?.let { av.handleFabLongClick(it) }
     return false
   }
 
@@ -51,6 +53,7 @@ class App: AppCompatActivity(), View.OnClickListener, View.OnLongClickListener {
       val text = EditText(app)
       text.layoutParams = LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT)
       text.setGravity(Gravity.TOP)
+      text.hint = app.getString(R.string.hint_code)
 
       main.addView(text)
 
