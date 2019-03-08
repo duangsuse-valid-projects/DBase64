@@ -13,6 +13,7 @@ import org.duangsuse.dbase64.R.id.*
 class AppViewHolder(val cont: FrameLayout, val text: EditText, val fab: FloatingActionButton, val app: App) {
   var isEncode: Boolean = true
   var coder: AbstractCoder
+  var storage: PersistenceStorage
 
   fun handleMenu(id: Int) {
     val dispatch: Function0<Unit> = when (id) {
