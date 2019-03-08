@@ -9,11 +9,12 @@ import android.widget.*
 import android.widget.FrameLayout.*
 
 import org.duangsuse.dbase64.R.id.*
+import org.duangsuse.dbase64.coders.*
 
 class AppViewHolder(val cont: FrameLayout, val text: EditText, val fab: FloatingActionButton, val app: App) {
   var isEncode: Boolean = true
-  var coder: AbstractCoder
-  var storage: PersistenceStorage
+  var coder: AbstractCoder = Base64Coder()
+  var storage: PersistenceStorage = PersistenceStorage(app)
 
   fun handleMenu(id: Int) {
     val dispatch: Function0<Unit> = when (id) {
