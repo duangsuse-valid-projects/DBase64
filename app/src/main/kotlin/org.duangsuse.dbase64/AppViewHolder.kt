@@ -13,6 +13,7 @@ import org.duangsuse.dbase64.coders.*
 
 class AppViewHolder(val cont: FrameLayout, val text: EditText, val fab: FloatingActionButton, val app: App) {
   var isEncode: Boolean = true
+  var isActionBarShown = true
   var coder: AbstractCoder = Base64Coder()
   var storage: PersistenceStorage = PersistenceStorage(app)
 
@@ -71,7 +72,7 @@ class AppViewHolder(val cont: FrameLayout, val text: EditText, val fab: Floating
   }
 
   fun resetView() {
-    app.titleColor = storage.scolor
+    app.supportActionBar?.setIcon(IconResolver.icon(storage.sicon))
   }
 
   fun codeUpdateView() {
@@ -85,15 +86,23 @@ class AppViewHolder(val cont: FrameLayout, val text: EditText, val fab: Floating
   }
 
   fun decodeErrorView() {
-    app.titleColor = 0xee0000
+    app.supportActionBar?.setIcon(IconResolver.icon(storage.ficon))
   }
 
   fun encodeFile() {}
   fun decodeFile() {}
   fun modeDialog() {}
   fun optionsDialog() {}
-  fun updateBar() {}
+
+  fun updateBar() {
+    isActionBarShown = ! isActionBarShown
+
+    if (isActionBarShown) app.supportActionBar?.show() else app.supportActionBar?.hide()
+  }
+
   fun about() {}
+
+  fun save() {}
 
   fun exit() = app.finish()
 

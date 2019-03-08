@@ -3,7 +3,7 @@ package org.duangsuse.dbase64
 import android.content.*
 
 class PersistenceStorage(val app: App) {
-  val p = app.getPreferences(android.content.Context.MODE_WORLD_READABLE)
+  val p = app.getPreferences(android.content.Context.MODE_PRIVATE)
 
   var kolorBar
     get() = p.getBoolean(KBAR, true)
@@ -33,6 +33,10 @@ class PersistenceStorage(val app: App) {
     get() = p.getString(FICON, "ic_lock_lock")
     set(id: String) { p.edit().putString(FICON, id).commit() }
 
+  var fsize
+    get() = p.getInt(FSIZE, 14)
+    set(sz: Int) { p.edit().putInt(FSIZE, sz).commit() }
+
   companion object {
     const val KBAR = "KolorBar"
     const val ANIM = "Animations"
@@ -42,5 +46,6 @@ class PersistenceStorage(val app: App) {
     const val SICON = "StatusBarIcon"
     const val FCOLOR = "FabColor"
     const val FICON = "FabIcon"
+    const val FSIZE = "FontSize"
   }
 }
