@@ -51,17 +51,41 @@ class AppViewHolder(val cont: FrameLayout, val text: EditText, val fab: Floating
 
   fun code() {
     codeUpdateView()
+
+    text.setText(coder.encode(text.text.toString()))
   }
+
   fun decode() {
     decodeUpdateView()
+
+    lateinit var result: String
+    try {
+      result = coder.decode(text.text.toString())
+    } catch (e: Exception) {
+      e.message?.let(::toast)
+      decodeErrorView()
+      return
+    }
+
+    text.setText(result)
+  }
+
+  fun resetView() {
+    app.titleColor = storage.scolor
   }
 
   fun codeUpdateView() {
+    resetView()
     text.hint = app.getString(R.string.hint_code)
   }
 
   fun decodeUpdateView() {
+    resetView()
     text.hint = app.getString(R.string.hint_decode)
+  }
+
+  fun decodeErrorView() {
+    app.titleColor = 0xee0000
   }
 
   fun encodeFile() {}
