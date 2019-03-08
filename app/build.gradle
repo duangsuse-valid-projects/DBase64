@@ -34,4 +34,5 @@ android {
 dependencies {
   implementation "com.android.support:appcompat-v7:$sdkVer.+"
   implementation "com.android.support:design:$sdkVer.+"
+  implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${kotlinVersion}"
 }

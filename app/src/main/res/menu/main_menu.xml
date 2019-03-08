@@ -1,6 +1,11 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-  <item android:title="a"/>
-  <item android:title="b"/>
-  <item android:title="c"/>
-  <item android:title="d"/>
+  <item android:id="@+id/s_encode" android:title="@string/encode"/>
+  <item android:id="@+id/s_decode" android:title="@string/decode"/>
+  <item android:id="@+id/s_encode_file" android:title="@string/encode_file"/>
+  <item android:id="@+id/s_decode_file" android:title="@string/decode_file"/>
+  <item android:id="@+id/s_mode" android:title="@string/mode"/>
+  <item android:id="@+id/s_opts" android:title="@string/options"/>
+  <item android:id="@+id/s_showbar" android:title="@string/show_actionbar"/>
+  <item android:id="@+id/s_about" android:title="@string/about"/>
+  <item android:id="@+id/s_exit" android:title="@string/exit"/>
 </menu>
